@@ -1,0 +1,9 @@
+@charset 'utf-8';
+
+div.bar {
+    display: inline-block;
+    margin-right: 2px;
+    width: 20px;
+    height: 75px;
+    background-color: teal;
+}
