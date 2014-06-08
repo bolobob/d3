@@ -1,0 +1,27 @@
+@charset 'utf-8';
+
+svg {
+    border: 1px solid gray;
+}
+
+svg .point {
+    fill: white;
+    stroke: green;
+    stroke-width: 4px;
+}
+
+svg .axis line,
+svg .axis path {
+    fill: none;
+    stroke: gray;
+    shape-rendering: crispEdges;
+}
+svg .axis text {
+    font-size: 11px;
+}
+
+svg .line {
+  fill: none;
+  stroke: green;
+  stroke-width: 4px;
+}

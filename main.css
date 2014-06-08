@@ -7,3 +7,14 @@ div.bar {
     height: 75px;
     background-color: teal;
 }
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: cripsEdges;
+}
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
