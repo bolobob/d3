@@ -1,5 +1,6 @@
 $(function() {
   var w = 600, h = 400, padding = 80;
+  var maxValue = 300;
   var dataset = [
     {month: '2013-04', enrollment: 123},
     {month: '2013-05', enrollment: 90},
@@ -86,8 +87,12 @@ $(function() {
   // 更新ボタンをリスナーとして登録
   d3.select('#update').on('click', function() {
     dataset.forEach(function(d) {
-      d.enrollment = Math.floor(Math.random() * 120);
+      d.enrollment = Math.floor(Math.random() * maxValue);
     });
+
+    yScale.domain([0, d3.max(dataset, function(d) {
+                        return d.enrollment;
+                      })]);
 
     // 点の更新
     circles.data(dataset)
