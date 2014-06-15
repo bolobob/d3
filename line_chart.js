@@ -82,4 +82,9 @@ $(function() {
     },
     'r': 6
   });
+
+  // 更新ボタンをリスナーとして登録
+  d3.select('#update').on('click', function() {
+
+  });
 });
