@@ -86,7 +86,7 @@ $(function() {
   // 更新ボタンをリスナーとして登録
   d3.select('#update').on('click', function() {
     dataset.forEach(function(d) {
-      console.log(d.enrollment);
+      d.enrollment = Math.floor(Math.random() * 120);
     });
   });
 });
