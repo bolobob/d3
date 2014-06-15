@@ -88,5 +88,16 @@ $(function() {
     dataset.forEach(function(d) {
       d.enrollment = Math.floor(Math.random() * 120);
     });
+
+    // 点の更新
+    circles.data(dataset)
+    .attr({
+      'cx': function(d) {
+        return xScale(d.month);
+      },
+      'cy': function(d) {
+        return yScale(d.enrollment);
+      }
+    });
   });
 });
