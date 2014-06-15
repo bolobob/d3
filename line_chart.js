@@ -89,11 +89,12 @@ $(function() {
     dataset.forEach(function(d) {
       d.enrollment = Math.floor(Math.random() * maxValue);
     });
-
     yScale.domain([0, d3.max(dataset, function(d) {
                         return d.enrollment;
                       })]);
-    d3.select('.y.axis').transition().call(yAxis);
+
+    // y軸の更新
+    d3.select('.y.axis').transition().duration(1000).call(yAxis);
 
     // 点の更新
     circles.data(dataset)
