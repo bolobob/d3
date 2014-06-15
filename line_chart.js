@@ -1,6 +1,5 @@
 $(function() {
   var w = 600, h = 400, padding = 80;
-  //var dataset = [123, 90, 20, 12, 3, 1, 0, 0, 1, 0, 0, 0];
   var dataset = [
     {month: '2013-04', registryNum: 123},
     {month: '2013-05', registryNum: 90},
