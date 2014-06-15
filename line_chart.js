@@ -23,12 +23,15 @@ $(function() {
     'width': w,
     'height': h
   });
+
+  // スケール
   var xScale = d3.time.scale()
                .domain(d3.extent(dataset, function(d) { return d.month; }))
                .range([padding, w - padding]);
   var yScale = d3.scale.linear()
                .domain([0, d3.max(dataset, function(d) { return d.registryNum; })])
                .range([h - padding, padding]);
+  // 軸関数
   var xAxis = d3.svg.axis()
               .scale(xScale)
               .orient('bottom');
@@ -36,7 +39,7 @@ $(function() {
               .scale(yScale)
               .orient('left')
               .ticks(5);
-
+  // x軸
   svg.append('g')
   .classed('axis', true)
   .attr('transform', 'translate(0, ' + (h - padding) + ')')
@@ -45,12 +48,13 @@ $(function() {
   .attr('transform', 'rotate(-45)')
   .attr('x', -15)
   .attr('y', 20);
-
+  // y軸
   svg.append('g')
   .classed('axis', true)
   .attr('transform', 'translate(' + padding + ', 0)')
   .call(yAxis)
 
+  // 折れ線
   var line = d3.svg.line()
              .x(function(d) {
                return xScale(d.month);
@@ -58,12 +62,12 @@ $(function() {
              .y(function(d) {
                return yScale(d.registryNum);
              });
-
   svg.append('path')
   .datum(dataset)
   .attr('class', 'line')
   .attr('d', line);
 
+  // 点
   var circles = svg.selectAll('circle')
   .data(dataset)
   .enter()
