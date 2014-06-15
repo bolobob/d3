@@ -91,6 +91,8 @@ $(function() {
 
     // 点の更新
     circles.data(dataset)
+    .transition()
+    .duration(1000)
     .attr({
       'cx': function(d) {
         return xScale(d.month);
@@ -101,6 +103,9 @@ $(function() {
     });
 
     // 線の更新
-    linePath.datum(dataset).attr('d', line);
+    linePath.datum(dataset)
+    .transition()
+    .duration(1000)
+    .attr('d', line);
   });
 });
