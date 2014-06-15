@@ -51,7 +51,7 @@ $(function() {
   .attr('y', 20);
   // y軸
   svg.append('g')
-  .classed('axis', true)
+  .classed('axis y', true)
   .attr('transform', 'translate(' + padding + ', 0)')
   .call(yAxis)
 
