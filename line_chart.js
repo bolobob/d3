@@ -62,7 +62,7 @@ $(function() {
              .y(function(d) {
                return yScale(d.enrollment);
              });
-  svg.append('path')
+  var linePath = svg.append('path')
   .datum(dataset)
   .attr('class', 'line')
   .attr('d', line);
@@ -99,5 +99,8 @@ $(function() {
         return yScale(d.enrollment);
       }
     });
+
+    // 線の更新
+    linePath.datum(dataset).attr('d', line);
   });
 });
