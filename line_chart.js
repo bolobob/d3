@@ -93,6 +93,7 @@ $(function() {
     yScale.domain([0, d3.max(dataset, function(d) {
                         return d.enrollment;
                       })]);
+    d3.select('.y.axis').call(yAxis);
 
     // 点の更新
     circles.data(dataset)
