@@ -25,3 +25,7 @@ svg .line {
   stroke: green;
   stroke-width: 4px;
 }
+
+#update:hover {
+    cursor: pointer;
+}
