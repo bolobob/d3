@@ -1,18 +1,18 @@
 $(function() {
   var w = 600, h = 400, padding = 80;
   var dataset = [
-    {month: '2013-04', registryNum: 123},
-    {month: '2013-05', registryNum: 90},
-    {month: '2013-06', registryNum: 20},
-    {month: '2013-07', registryNum: 12},
-    {month: '2013-08', registryNum: 3},
-    {month: '2013-09', registryNum: 1},
-    {month: '2013-10', registryNum: 0},
-    {month: '2013-11', registryNum: 0},
-    {month: '2013-12', registryNum: 1},
-    {month: '2014-01', registryNum: 0},
-    {month: '2014-02', registryNum: 20},
-    {month: '2014-03', registryNum: 0}
+    {month: '2013-04', enrollment: 123},
+    {month: '2013-05', enrollment: 90},
+    {month: '2013-06', enrollment: 20},
+    {month: '2013-07', enrollment: 12},
+    {month: '2013-08', enrollment: 3},
+    {month: '2013-09', enrollment: 1},
+    {month: '2013-10', enrollment: 0},
+    {month: '2013-11', enrollment: 0},
+    {month: '2013-12', enrollment: 1},
+    {month: '2014-01', enrollment: 0},
+    {month: '2014-02', enrollment: 20},
+    {month: '2014-03', enrollment: 0}
   ];
   var parseDate = d3.time.format('%Y-%m').parse;
   dataset.forEach(function(d) {
@@ -29,7 +29,7 @@ $(function() {
                .domain(d3.extent(dataset, function(d) { return d.month; }))
                .range([padding, w - padding]);
   var yScale = d3.scale.linear()
-               .domain([0, d3.max(dataset, function(d) { return d.registryNum; })])
+               .domain([0, d3.max(dataset, function(d) { return d.enrollment; })])
                .range([h - padding, padding]);
   // 軸関数
   var xAxis = d3.svg.axis()
@@ -60,7 +60,7 @@ $(function() {
                return xScale(d.month);
              })
              .y(function(d) {
-               return yScale(d.registryNum);
+               return yScale(d.enrollment);
              });
   svg.append('path')
   .datum(dataset)
@@ -78,13 +78,15 @@ $(function() {
       return xScale(d.month);
     },
     'cy': function(d) {
-      return yScale(d.registryNum);
+      return yScale(d.enrollment);
     },
     'r': 6
   });
 
   // 更新ボタンをリスナーとして登録
   d3.select('#update').on('click', function() {
-
+    dataset.forEach(function(d) {
+      console.log(d.enrollment);
+    });
   });
 });
