@@ -97,6 +97,7 @@ $(function() {
     d3.select('.y.axis').transition().duration(1000).call(yAxis);
 
     // 点の更新
+    circles = svg.selectAll('.point');
     circles.data(dataset)
     .transition()
     .duration(1000)
