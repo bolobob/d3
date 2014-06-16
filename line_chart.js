@@ -115,4 +115,8 @@ $(function() {
     .duration(1000)
     .attr('d', line);
   });
+
+  d3.select('#add').on('click', function() {
+    console.log(this);
+  });
 });
