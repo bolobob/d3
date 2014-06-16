@@ -1,6 +1,6 @@
 $(function() {
   var w = 600, h = 400, padding = 80;
-  var maxValue = 300;
+  var maxValue = 123;
   var dataset = [
     {month: '2013-04', enrollment: 123},
     {month: '2013-05', enrollment: 90},
@@ -123,5 +123,20 @@ $(function() {
                     });
     var newMonth = new Date(maxMonth.setMonth(maxMonth.getMonth() + 1));
     dataset.push({'month': newMonth, 'enrollment': newEnrollment});
+
+    svg.selectAll('.point')
+    .data(dataset)
+    .enter()
+    .append('circle')
+    .classed('point', true)
+    .attr({
+      'cx': function(d) {
+        return xScale(d.month);
+      },
+      'cy': function(d) {
+        return yScale(d.enrollment);
+      },
+      'r': 6
+    });
   });
 });
