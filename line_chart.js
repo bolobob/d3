@@ -142,5 +142,19 @@ $(function() {
       },
       'r': 6
     });
+
+    // 更新
+    // 線
+    var linePath = svg.select('.line');
+    linePath.datum(dataset)
+    .transition()
+    .attr('d', line);
+    // 点
+    circles.transition()
+    .attr({
+      'cx': function(d) {
+        return xScale(d.month);
+      }
+    });
   });
 });
