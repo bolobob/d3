@@ -122,5 +122,6 @@ $(function() {
                       return d.month;
                     });
     var newMonth = new Date(maxMonth.setMonth(maxMonth.getMonth() + 1));
+    dataset.push({'month': newMonth, 'enrollment': newEnrollment});
   });
 });
