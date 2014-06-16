@@ -118,5 +118,8 @@ $(function() {
 
   d3.select('#add').on('click', function() {
     var newEnrollment = Math.floor(Math.random() * maxValue);
+    var maxMonth = d3.max(dataset, function(d) {
+                      return d.month;
+                    });
   });
 });
