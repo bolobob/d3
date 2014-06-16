@@ -124,8 +124,7 @@ $(function() {
     var newMonth = new Date(maxMonth.setMonth(maxMonth.getMonth() + 1));
     dataset.push({'month': newMonth, 'enrollment': newEnrollment});
 
-    svg.selectAll('.point')
-    .data(dataset)
+    circles.data(dataset)
     .enter()
     .append('circle')
     .classed('point', true)
