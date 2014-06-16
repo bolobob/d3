@@ -121,5 +121,6 @@ $(function() {
     var maxMonth = d3.max(dataset, function(d) {
                       return d.month;
                     });
+    var newMonth = new Date(maxMonth.setMonth(maxMonth.getMonth() + 1));
   });
 });
