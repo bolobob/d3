@@ -117,6 +117,6 @@ $(function() {
   });
 
   d3.select('#add').on('click', function() {
-    console.log(this);
+    var newEnrollment = Math.floor(Math.random() * maxValue);
   });
 });
