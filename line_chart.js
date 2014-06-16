@@ -119,9 +119,9 @@ $(function() {
   d3.select('#add').on('click', function() {
     var newEnrollment = Math.floor(Math.random() * maxValue);
     var maxMonth = d3.max(dataset, function(d) {
-                      return d.month;
+                      return new Date(d.month);
                     });
-    var newMonth = new Date(maxMonth.setMonth(maxMonth.getMonth() + 1));
+    var newMonth = maxMonth.setMonth(maxMonth.getMonth() + 1);
     dataset.push({'month': newMonth, 'enrollment': newEnrollment});
 
     xScale.domain(d3.extent(dataset, function(d) {
