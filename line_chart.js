@@ -42,7 +42,7 @@ $(function() {
               .ticks(5);
   // x軸
   svg.append('g')
-  .classed('axis', true)
+  .classed('axis x', true)
   .attr('transform', 'translate(0, ' + (h - padding) + ')')
   .call(xAxis)
   .selectAll('text')
@@ -157,5 +157,14 @@ $(function() {
         return xScale(d.month);
       }
     });
+    // x軸
+    d3.select('.x.axis')
+    .transition()
+    .call(xAxis)
+    .selectAll('text')
+    .attr('transform', 'rotate(-45)')
+    .attr('x', -15)
+    .attr('y', 20);
+
   });
 });
