@@ -167,4 +167,8 @@ $(function() {
     .attr('y', 20);
 
   });
+
+  d3.select('#remove').on('click', function() {
+    console.log(this);
+  });
 });

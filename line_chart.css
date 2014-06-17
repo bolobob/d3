@@ -27,6 +27,7 @@ svg .line {
 }
 
 #update:hover,
-#add:hover {
+#add:hover,
+#remove:hover {
     cursor: pointer;
 }
