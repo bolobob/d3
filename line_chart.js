@@ -129,7 +129,7 @@ $(function() {
                     return d.month;
                   }));
 
-    var circles = svg.selectAll('.point'); // 追加ボタンを押すたびに取得しなおす必要があるみたい
+    circles = svg.selectAll('.point'); // 追加ボタンを押すたびに取得しなおす必要があるみたい
     circles.data(dataset)
     .enter()
     .append('circle')
