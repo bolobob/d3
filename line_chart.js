@@ -169,6 +169,13 @@ $(function() {
   });
 
   d3.select('#remove').on('click', function() {
-    console.log(this);
+    dataset.shift();
+    d3.selectAll('.point')
+    .data(dataset)
+    .exit()
+    .transition()
+    .duration(500)
+    .attr({'cx': w})
+    .remove();
   });
 });
