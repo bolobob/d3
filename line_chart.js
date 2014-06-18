@@ -25,6 +25,11 @@ $(function() {
     'height': h
   });
 
+  // キー関数
+  var key = function(d) {
+    return d.month;
+  };
+
   // スケール
   var xScale = d3.time.scale()
                .domain(d3.extent(dataset, function(d) { return d.month; }))
@@ -70,7 +75,7 @@ $(function() {
 
   // 点
   var circles = svg.selectAll('circle')
-  .data(dataset)
+  .data(dataset, key)
   .enter()
   .append('circle')
   .classed('point', true)
@@ -98,7 +103,7 @@ $(function() {
 
     // 点の更新
     circles = svg.selectAll('.point');
-    circles.data(dataset)
+    circles.data(dataset, key)
     .transition()
     .duration(1000)
     .attr({
@@ -130,7 +135,7 @@ $(function() {
                   }));
 
     circles = svg.selectAll('.point'); // 追加ボタンを押すたびに取得しなおす必要があるみたい
-    circles.data(dataset)
+    circles.data(dataset, key)
     .enter()
     .append('circle')
     .classed('point', true)
@@ -170,14 +175,27 @@ $(function() {
 
   d3.select('#remove').on('click', function() {
     dataset.shift();
+    console.log(dataset);
+    // x軸
+    // スケール
+    xScale.domain(d3.extent(dataset, function(d) {
+                    return d.month;
+                  }));
+    d3.select('.x.axis').transition()
+    .duration(500)
+    .call(xAxis)
+    .selectAll('text')
+    .attr('transform', 'rotate(-45)')
+    .attr('x', -15)
+    .attr('y', 20);
 
     // 点
     d3.selectAll('.point')
-    .data(dataset)
+    .data(dataset, key)
     .exit()
     .transition()
     .duration(500)
-    .attr({'cx': w})
+    .attr({'cx': 0})
     .remove();
   });
 });
