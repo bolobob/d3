@@ -170,6 +170,8 @@ $(function() {
 
   d3.select('#remove').on('click', function() {
     dataset.shift();
+
+    // 点
     d3.selectAll('.point')
     .data(dataset)
     .exit()
