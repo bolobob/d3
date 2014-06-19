@@ -175,7 +175,7 @@ $(function() {
 
   d3.select('#remove').on('click', function() {
     dataset.shift();
-    console.log(dataset);
+
     // x軸
     // スケール
     xScale.domain(d3.extent(dataset, function(d) {
@@ -197,5 +197,11 @@ $(function() {
     .duration(500)
     .attr({'cx': 0})
     .remove();
+
+    // 線
+    linePath.datum(dataset)
+    .transition()
+    .duration(1000)
+    .attr('d', line);
   });
 });
