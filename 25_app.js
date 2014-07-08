@@ -25,14 +25,15 @@ $(function() {
   var key = function(d) {
     return d.key;
   };
+  var maxValue = d3.max(dataset, function(d) {
+                             return d.value;
+                           });
   var xScale = d3.scale.ordinal()
                .domain(d3.range(dataset.length))
                .rangeRoundBands([0, w], 0.05);
 
   var yScale = d3.scale.linear()
-               .domain([0, d3.max(dataset, function(d) {
-                             return d.value;
-                           })])
+               .domain([0, maxValue])
                .range([0, h]);
 
   //Create SVG element
@@ -41,10 +42,38 @@ $(function() {
             .attr("width", w)
             .attr("height", h);
 
+  //Create g(roup)
+  var groups = svg.selectAll('.bar')
+               .data(dataset)
+               .enter()
+               .append('g')
+               .attr({'class': 'bar'});
+
+  groups
+  .append("rect")
+  .attr("x", function(d, i) {
+    return xScale(i);
+  })
+  .attr("y", function(d) {
+    return h - yScale(maxValue);
+  })
+  .attr("width", xScale.rangeBand())
+  .attr("height", function(d) {
+    return yScale(maxValue);
+  })
+  .attr('fill', 'none')
+  .on('mouseover', function(d) {
+    d3.select(this)
+    .transition()
+    .duration(250)
+    .attr({'fill': 'orange'});
+  })
+  .on('mouseout', function(d) {
+    d3.select(this).attr({'fill': "rgb(0, 0, " + (d.value * 10) + ")"});
+  });
+
   //Create bars
-  svg.selectAll("rect")
-  .data(dataset, key)
-  .enter()
+  groups
   .append("rect")
   .attr("x", function(d, i) {
     return xScale(i);
@@ -58,12 +87,10 @@ $(function() {
   })
   .attr("fill", function(d) {
     return "rgb(0, 0, " + (d.value * 10) + ")";
-  });
+  })
 
   //Create labels
-  svg.selectAll("text")
-  .data(dataset, key)
-  .enter()
+  groups
   .append("text")
   .text(function(d) {
     return d.value;
@@ -79,14 +106,11 @@ $(function() {
   .attr("font-size", "11px")
   .attr("fill", "white");
 
-
   //On click, update with new data
   d3.select("p").on("click", function() {
     dataset.shift();
     xScale.domain(d3.range(dataset.length));
-    yScale.domain([0, d3.max(dataset, function(d) {
-                        return d.value;
-                      })]);
+    yScale.domain([0, maxValue]);
 
     var bars = svg.selectAll('rect')
                .data(dataset, key);
